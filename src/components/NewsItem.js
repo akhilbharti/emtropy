@@ -7,7 +7,8 @@ import NothingSvg from '../svg/nothing.svg';
 import PublishDate from './PublishDate';
 import Loading from './Loading';
 
-const NewsWrapper = styled(Link)`
+const NewsWrapper = styled.a`
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -27,7 +28,7 @@ const NewsWrapper = styled(Link)`
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -161,7 +162,7 @@ function NewsItem({ article}){
 
   return (
     <LazyLoad height={200} offset={200}>
-      <NewsWrapper to={`${process.env.PUBLIC_URL}/news/${article.source?.name}`}>
+      <NewsWrapper href={article.url} target="_blank" rel="noopener noreferrer">
         {!loaded ? (
           <ImgLoading>
             <Loading />
@@ -182,7 +183,7 @@ function NewsItem({ article}){
           }}
         />
         <DetailsWrapper>
-          <Title>{article.title}</Title>
+            <Title>{article.title}</Title>        
           <PublishedDateWrapper>
             <PublishDate number={article.publishedAt} />
             <Tooltip>published on:- {article.source.name}</Tooltip>
