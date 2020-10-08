@@ -8,7 +8,7 @@ import {init} from '../store/actions'
 import Sidebar from "./Sidebar";
 import MenuMobile from "./MenuMobile";
 import Headlines from "./Headlines";
-// import Search from "./Search";
+import Search from "./Search";
 
 import ShowError from "./ShowError";
 
@@ -146,11 +146,11 @@ const App = () => {
                 exact
                 component={Headlines}
               />
-              {/* <Route
+              <Route
                 path={process.env.PUBLIC_URL + "/search/:query"}
                 exact
                 component={Search}
-              /> */}
+              />
              
               <Route
                 path="/404"

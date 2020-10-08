@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import queryString from 'query-string';
 import Header from '../components/Header';
 import NotFound from '../components/NotFound';
 import styled from 'styled-components';
 import { animateScroll as scroll } from 'react-scroll';
 
-import { getMoviesSearch, clearMovies } from '../store/actions';
-import MoviesList from '../components/MoviesList';
+import { getNewsSearch, clearNews } from '../store/actions';
+import NewsList from '../components/NewsList';
 import Loader from '../components/Loader';
 
 const Wrapper = styled.div`
@@ -17,28 +17,34 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Search = ({
-  general,
-  match,
-  location,
-  getMoviesSearch,
-  clearMovies,
-  movies,
-}) => {
+const Search = (props) => {
+    const dispatch = useDispatch();
+    const { loading, articles } = useSelector((state) => state.news);
+    const {match}=props
   const { query } = match.params;
-  const params = queryString.parse(location.search);
-  const { secure_base_url } = general.base.images;
+
+  console.log('%c⧭', 'color: #aa00ff', query);
+  // const params = queryString.parse(location.search);
+
 
   // Fetch movies hook
-  useFetchMoviesSearch(query, getMoviesSearch, params, clearMovies);
+  // useFetchMoviesSearch(query, getMoviesSearch, params, clearMovies);
+
+  useEffect(() => {
+    scroll.scrollToTop({
+      smooth: true,
+    });
+    dispatch(getNewsSearch(query));
+    return () => dispatch(clearNews());
+  }, [query, dispatch]);
 
   // If loading
-  if (movies.loading) {
+  if (loading) {
     return <Loader />;
   }
 
   //If there are no results
-  else if (movies.total_results === 0) {
+  else if (articles.length === 0) {
     return (
       <NotFound
         title="Sorry!"
@@ -55,29 +61,12 @@ const Search = ({
           <title>{`${query} - search results`}</title>
         </Helmet>
         <Header title={query} subtitle="search results" />
-        <MoviesList movies={movies} baseUrl={secure_base_url} />;
+        <NewsList articles={articles} />;
       </Wrapper>
     );
   }
 };
 
-// Hook to fetch the movies, will be called everytime the route for the search changes
-function useFetchMoviesSearch(query, getMoviesSearch, params, clearMovies) {
-  useEffect(() => {
-    scroll.scrollToTop({
-      smooth: true,
-    });
-    getMoviesSearch(query, params.page);
-    return () => clearMovies();
-  }, [query, params.page, getMoviesSearch, clearMovies]);
-}
 
-// Map State to Component Props
-const mapStateToProps = ({ general, movies }) => {
-  return { general, movies };
-};
 
-export default connect(
-  mapStateToProps,
-  { getMoviesSearch, clearMovies }
-)(Search);
+export default (Search);

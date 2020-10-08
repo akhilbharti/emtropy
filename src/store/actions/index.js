@@ -94,6 +94,29 @@ export const setSelectedArticles = (name) => (dispatch, getState) => {
   }
 };
 
+
+// Get movies search
+export const getNewsSearch = (query) => async (dispatch) => {
+  try {
+    dispatch({ type: TYPES.FETCH_NEWS_LOADING });
+    const res = await gnewsAPI.get(`/search`, {
+      params: {
+        q: query,
+        lang: "en",
+        country: "in",
+      },
+    });
+    await dispatch({
+      type: TYPES.FETCH_NEWS_SEARCH,
+      payload: res.data,
+    });
+    dispatch({ type: TYPES.FETCH_NEWS_FINISHED });
+  } catch (err) {
+    dispatch({ type: TYPES.INSERT_ERROR, payload: err.response });
+    history.push(process.env.PUBLIC_URL + "/error");
+  }
+};
+
 // Set loading to true for next render
 export const clearNews = () => {
   return {

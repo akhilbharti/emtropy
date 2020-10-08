@@ -160,16 +160,14 @@ function MenuMobile(){
         <SearchBar />
       </WrapperStickyBox>
       <Menu isOpen={isOpened} onStateChange={isMenuOpen} styles={styles}>
-        <Heading>Discover</Heading>
+        <Heading>Top-headlines</Heading>
         {renderStatic(staticTopic, selected, setisOpened)}
-        <Heading>Genres</Heading>
+        <Heading>Topic</Heading>
         {renderTopics(topics, selected, setisOpened)}
         <StyledCoffe>
           <Svg src={GithubLogo} alt="github repo" />
           <span style={{ marginLeft: "5px" }}>Akhil Bharti</span>
         </StyledCoffe>
-
-
       </Menu>
     </React.Fragment>
   );
