@@ -6,27 +6,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Form = styled.form`
   position: relative;
+  margin-right: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 8px var(--shadow-color);
   background-color: var(--color-primary-dark);
   border: 1px solid var(--color-primary);
-  width: ${props => (props.state ? '30rem' : '2rem')};
-  cursor: ${props => (props.state ? 'auto' : 'pointer')};
+  width: ${(props) => (props.state ? "20rem" : "2rem")};
+  margin-top: ${(props) => (props.mobile ? "5px" : "0")};
+  cursor: ${(props) => (props.state ? "auto" : "pointer")};
   padding: 2rem;
   height: 2rem;
   outline: none;
   border-radius: 10rem;
   transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  @media ${props => props.theme.mediaQueries.large} {
+  @media ${(props) => props.theme.mediaQueries.large} {
     background-color: var(--color-primary);
     border: 1px solid transparent;
     padding: 1.5rem;
   }
 
-  @media ${props => props.theme.mediaQueries.smallest} {
+  @media ${(props) => props.theme.mediaQueries.smallest} {
     max-width: 25rem;
   }
 `;
@@ -84,7 +86,7 @@ const Button = styled.button`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const [input, setInput] = useState('');
   const [state, setState] = useState(false);
   const node = useRef();
@@ -128,12 +130,13 @@ const SearchBar = () => {
       }}
       onSubmit={onFormSubmit}
       ref={node}
+      mobile={props.mobile}
     >
       <Button type="submit" state={state}>
-        <FontAwesomeIcon icon={'search'} size="1x" />
+        <FontAwesomeIcon icon={"search"} size="1x" />
       </Button>
       <Input
-        onChange={e => setInput(e.target.value)}
+        onChange={(e) => setInput(e.target.value)}
         ref={inputFocus}
         value={input}
         state={state}

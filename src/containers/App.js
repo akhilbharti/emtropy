@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 import history from "../history";
 import { useDispatch,useSelector } from "react-redux";
-import {init} from '../store/actions'
+import { init} from "../store/actions";
 
 import Sidebar from "./Sidebar";
 import MenuMobile from "./MenuMobile";
@@ -14,6 +14,7 @@ import ShowError from "./ShowError";
 
 import NotFound from "../components/NotFound";
 import SearchBar from "../components/SearchBar";
+import ShortBy from "../components/ShortBy";
 import Loader from "../components/Loader";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -87,11 +88,12 @@ const SearhBarWrapper = styled.div`
   top: 0;
   right: 0;
   padding: 2rem;
+  display:flex;
 `;
 
 const App = () => {
   const dispatch = useDispatch()
-  const isLoading = useSelector(state => state.general?.loading)
+  const {loading,countries,lang} = useSelector(state => state.general)
   const [isMobile, setisMobile] = useState(null);
 
   useEffect(() => {
@@ -110,7 +112,7 @@ const App = () => {
     return () => window.removeEventListener("resize", changeMobile);
   }, []);
 
-  return isLoading ? (
+  return loading ? (
     <ContentWrapper>
       <Loader />
     </ContentWrapper>
@@ -125,6 +127,8 @@ const App = () => {
               <Sidebar />
               <SearhBarWrapper>
                 <SearchBar />
+                <ShortBy options={countries} action="country" />
+                <ShortBy options={lang} action="language" />
               </SearhBarWrapper>
             </>
           )}
@@ -140,7 +144,7 @@ const App = () => {
                   />
                 )}
               />
-           
+
               <Route
                 path={process.env.PUBLIC_URL + "/top-headlines/:name"}
                 exact
@@ -151,7 +155,7 @@ const App = () => {
                 exact
                 component={Search}
               />
-             
+
               <Route
                 path="/404"
                 component={() => (

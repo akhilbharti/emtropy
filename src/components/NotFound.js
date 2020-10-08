@@ -49,7 +49,7 @@ const Svg = styled.img`
   margin-bottom: 6rem;
 `;
 
-const NotFound = ({ title, subtitle }) => {
+const NotFound = ({ title, subtitle, languagemissing }) => {
   return (
     <Wrapper>
       <TitleWrapper>
@@ -57,9 +57,9 @@ const NotFound = ({ title, subtitle }) => {
         <SubTitle>{subtitle}</SubTitle>
       </TitleWrapper>
       <Svg src={`${NotfoundSvg}`} alt="Not found" />
-      <LinkWrapper to={process.env.PUBLIC_URL + '/'}>
+      {!languagemissing && <LinkWrapper to={process.env.PUBLIC_URL + "/"}>
         <Button title="Home" solid icon="home" left />
-      </LinkWrapper>
+      </LinkWrapper>}
     </Wrapper>
   );
 };

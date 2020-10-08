@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import StickyBox from 'react-sticky-box';
+import ShortBy from "../components/ShortBy";
 
 import Logo from '../components/Logo';
 import GithubLogo from "../svg/github-logo.svg";
@@ -107,10 +108,7 @@ function Sidebar(){
         <Heading>Topic</Heading>
         {renderTopics(topics, selected)}
         <StyledCoffe>
-          <Svg
-            src={GithubLogo}
-            alt="github repo"
-          />
+          <Svg src={GithubLogo} alt="github repo" />
           <span style={{ marginLeft: "5px" }}>Akhil Bharti</span>
         </StyledCoffe>
         <ClockWrapper>

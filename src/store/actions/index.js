@@ -27,6 +27,30 @@ export const getCountries = ()=>(dispatch)=> {
   });
 };
 
+export const setSelectedCountries=(record)=>dispatch=>{
+  if (!record) {
+    dispatch({ type: TYPES.REMOVE_SELECTED_COUNTRY });
+  } else{
+    dispatch({
+      type: TYPES.SELECTED_COUNTRY,
+      payload: record,
+    });
+  }
+}
+
+export const setSelectedLanguage = (record) => (dispatch) => {
+  if (!record) {
+    dispatch({ type: TYPES.REMOVE_SELECTED_LANGUAGE });
+  } else {
+    dispatch({
+      type: TYPES.SELECTED_LANGUAGE,
+      payload: record,
+    });
+  }
+};
+
+
+
 export const getTopics = () => (dispatch) => {
   dispatch({
     type: TYPES.GET_TOPICS,
@@ -53,7 +77,7 @@ export const setSelectedMenu = (name) => (dispatch, getState) => {
 
 // Get News Headlines
 export const getNewsHeadlines = (name) => async (dispatch, getState) => {
-  const { selected } = getState().general;
+  const { selected, selectedCountry, selectedLanguage } = getState().general;
   if (!selected) {
     return;
   }
@@ -62,8 +86,8 @@ export const getNewsHeadlines = (name) => async (dispatch, getState) => {
     const res = await gnewsAPI.get(`/top-headlines`, {
       params: {
         topic: name,
-        lang: "en",
-        country: "in",
+        lang: selectedLanguage.value,
+        country: selectedCountry.value,
       },
     });
     await dispatch({
@@ -96,14 +120,16 @@ export const setSelectedArticles = (name) => (dispatch, getState) => {
 
 
 // Get movies search
-export const getNewsSearch = (query) => async (dispatch) => {
+export const getNewsSearch = (query) => async (dispatch,getState) => {
+  const {selectedCountry, selectedLanguage } = getState().general;
+
   try {
     dispatch({ type: TYPES.FETCH_NEWS_LOADING });
     const res = await gnewsAPI.get(`/search`, {
       params: {
         q: query,
-        lang: "en",
-        country: "in",
+        lang: selectedLanguage.value,
+        country: selectedCountry.value,
       },
     });
     await dispatch({

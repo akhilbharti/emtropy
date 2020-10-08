@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import NewsItem from "./NewsItem";
 // import Pagination from './Pagination';
+import NotFound from "./NotFound";
+
 
 const NewsWrapper = styled.div`
   display: grid;
@@ -27,7 +29,7 @@ const NewsWrapper = styled.div`
 
 function NewsList({ articles}){
   if (articles.length === 0) {
-    return null;
+    return <NotFound title="No News Found for this Language !" subtitle={`Please Choose Different Language...`}  languagemissing={true}/>;
   }
 
   return (

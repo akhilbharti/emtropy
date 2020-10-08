@@ -1,36 +1,57 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Select from 'react-select';
+import styled from "styled-components";
+import { setSelectedCountries, setSelectedLanguage } from "../store/actions";
+import { useDispatch } from "react-redux";
 
-const SortBy = ({ option, setOption }) => {
+
+const SortBy = ({ options,action }) => {
+  const dispatch = useDispatch()
+  const [option, setOption] = useState(options[0]);
   function handleChange(selectedOption) {
     setOption(selectedOption);
   }
 
+  useEffect(() => {
+    if(action==="country" && option!==""){
+
+      dispatch(setSelectedCountries(option));
+      return () => {
+        dispatch(setSelectedCountries())
+      }
+    }else{
+      dispatch(setSelectedLanguage(option));
+      return () => {
+        dispatch(setSelectedLanguage());
+      };
+    }
+  }, [action, dispatch, option])
+
+  const SelctWrap = styled(Select)`
+  width:15rem;
+  margin-right:1rem;
+  `
+
   return (
-    <Select
-      theme={theme => ({
+    <SelctWrap
+      theme={(theme) => ({
         ...theme,
         borderRadius: 5,
-        width: '50',
+        width: "100",
         colors: {
           ...theme.colors,
-          primary25: 'var(--color-primary-lighter)',
-          primary: 'var(--color-primary)',
+          primary25: "var(--color-primary-lighter)",
+          primary: "var(--color-primary)",
         },
       })}
       value={option}
       onChange={handleChange}
       options={options}
+      defaultValue={options[0]}
       isSearchable={false}
     />
   );
 };
 
-const options = [
-  { value: 'popularity.desc', label: 'Popularity' },
-  { value: 'vote_average.desc', label: 'Votes Average' },
-  { value: 'original_title.asc', label: 'Title' },
-  { value: 'release_date.desc', label: 'Release Date' },
-];
 
 export default SortBy;

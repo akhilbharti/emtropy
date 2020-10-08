@@ -1,14 +1,14 @@
 export const countries = [
-  { country: "India", code: "in" },
-  { country: "United States", code: "us" },
-  { country: "France", code: "fr" },
+  { label: "India", value: "in" },
+  { label: "United States", value: "us" },
+  { label: "Australia", value: "au" },
 ];
 
 
 export const languages=[
-   { country: "English", code: "en" },
-  { country: "Spanish", code: "es" },
-  { country: "French", code: "fr" },
+   { label: "English", value: "en" },
+  { label: "Hindi", value: "hi" },
+  { label: "French", value: "fr" },
 ]
 
 

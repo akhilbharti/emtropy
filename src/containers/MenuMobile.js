@@ -6,6 +6,8 @@ import StickyBox from 'react-sticky-box';
 import { slide as Menu } from 'react-burger-menu';
 
 import SearchBar from '../components/SearchBar';
+import ShortBy from "../components/ShortBy";
+
 import GithubLogo from "../svg/github-logo.svg";
 import MenuItem from '../components/MenuItem';
 
@@ -139,8 +141,14 @@ var styles = {
   },
 };
 
+const SearhBarWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  padding: 2rem;
+  display: flex;
+`;
 function MenuMobile(){
-    const { staticTopic, topics, selected } = useSelector(
+    const { staticTopic, topics, selected, countries } = useSelector(
       (state) => state.general
     );
   const [isOpened, setisOpened] = useState(false);
@@ -157,7 +165,10 @@ function MenuMobile(){
           <Bar />
           <Bar />
         </Hamburguer>
-        <SearchBar />
+        <SearhBarWrapper>
+        <SearchBar mobile={true} />
+        <ShortBy options={countries} placeholder="Country" action="country" />
+        </SearhBarWrapper>
       </WrapperStickyBox>
       <Menu isOpen={isOpened} onStateChange={isMenuOpen} styles={styles}>
         <Heading>Top-headlines</Heading>
