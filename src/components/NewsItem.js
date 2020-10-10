@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
-
+import {useDispatch} from 'react-redux'
 import NothingSvg from '../svg/nothing.svg';
 import PublishDate from './PublishDate';
 import Loading from './Loading';
+// import Rating from "../components/Rating";
+import Button from "../components/Button";
+import { hideSelectedNews } from '../store/actions';
+
 
 const NewsWrapper = styled.a`
   text-decoration: none;
@@ -155,7 +158,7 @@ const Tooltip = styled.span`
 function NewsItem({ article}){
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
-
+const dispatch = useDispatch()
   useEffect(() => {
     return () => setLoaded(false);
   }, []);
@@ -183,10 +186,28 @@ function NewsItem({ article}){
           }}
         />
         <DetailsWrapper>
-            <Title>{article.title}</Title>        
+          <Title>{article.title}</Title>
           <PublishedDateWrapper>
-            <PublishDate number={article.publishedAt} />
+            <PublishDate
+              number={new Intl.DateTimeFormat("en-GB", {
+                month: "long",
+                day: "2-digit",
+                year: "numeric",
+              }).format(new Date(article.publishedAt))}
+            />
             <Tooltip>published on:- {article.source.name}</Tooltip>
+          </PublishedDateWrapper>
+          {/* card actions */}
+          <PublishedDateWrapper>
+            <Button title="Like" solid icon="thumbs-up" left />
+            <Button
+              title="hide"
+              solid
+              icon="eye-slash"
+              left
+              onClick={(e) => {e.preventDefault()
+                dispatch(hideSelectedNews(article.publishedAt))}}
+            />
           </PublishedDateWrapper>
         </DetailsWrapper>
       </NewsWrapper>

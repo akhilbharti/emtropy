@@ -57,9 +57,11 @@ const NotFound = ({ title, subtitle, languagemissing }) => {
         <SubTitle>{subtitle}</SubTitle>
       </TitleWrapper>
       <Svg src={`${NotfoundSvg}`} alt="Not found" />
-      {!languagemissing && <LinkWrapper to={process.env.PUBLIC_URL + "/"}>
-        <Button title="Home" solid icon="home" left />
-      </LinkWrapper>}
+      {!languagemissing && (
+        <LinkWrapper to={process.env.PUBLIC_URL + "/"}>
+          <Button title="Home" solid icon="home" left />
+        </LinkWrapper>
+      )}
     </Wrapper>
   );
 };

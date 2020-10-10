@@ -118,6 +118,16 @@ export const setSelectedArticles = (name) => (dispatch, getState) => {
   }
 };
 
+export const hideSelectedNews=(news)=>(dispatch,getState)=>{
+  const { articles } = getState().news;
+
+dispatch({
+  type: TYPES.HIDE_SELECTED_NEWS,
+  payload: news,
+});
+
+}
+
 
 // Get movies search
 export const getNewsSearch = (query) => async (dispatch,getState) => {

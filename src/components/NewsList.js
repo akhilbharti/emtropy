@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import {useSelector} from 'react-redux'
 import NewsItem from "./NewsItem";
 // import Pagination from './Pagination';
 import NotFound from "./NotFound";
@@ -28,6 +28,7 @@ const NewsWrapper = styled.div`
 `;
 
 function NewsList({ articles}){
+  const hidden = useSelector(state => state.news?.hidden)
   if (articles.length === 0) {
     return <NotFound title="No News Found for this Language !" subtitle={`Please Choose Different Language...`}  languagemissing={true}/>;
   }
@@ -35,12 +36,12 @@ function NewsList({ articles}){
   return (
     <>
       <NewsWrapper>
-        {articles.map((article) => (
-          <NewsItem
-            article={article}
-            key={article.publishedAt}
-          />
-        ))}
+        {articles.map(
+          (article) =>
+            !hidden[article.publishedAt] && (
+              <NewsItem article={article} key={article.publishedAt} />
+            )
+        )}
       </NewsWrapper>
       {/* <Pagination articles={articles} /> */}
     </>

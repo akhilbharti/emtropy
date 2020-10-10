@@ -33,6 +33,9 @@ import {
   faChevronLeft,
   faLink,
   faPlay,
+  faTrash,
+  faEyeSlash,
+  faThumbsUp
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as farFaStar } from "@fortawesome/free-regular-svg-icons";
 
@@ -51,7 +54,11 @@ library.add(
   faChevronRight,
   faChevronLeft,
   faLink,
-  faPlay
+  faPlay,
+  faTrash,
+  faEyeSlash,
+  faThumbsUp
+
 );
 
 const MainWrapper = styled.div`

@@ -60,13 +60,17 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ title, solid, icon, left }) => {
+const Button = ({ title, solid, icon, left, onClick }) => {
   return (
-    <StyledButton left={left ? 1 : 0} solid={solid ? 1 : 0}>
+    <StyledButton
+      left={left ? 1 : 0}
+      solid={solid ? 1 : 0}
+      onClick={onClick}
+    >
       <FontAwesomeIcon
         icon={icon}
         size="1x"
-        style={left ? { marginRight: '10px' } : { marginLeft: '10px' }}
+        style={left ? { marginRight: "10px" } : { marginLeft: "10px" }}
       />
       {title}
     </StyledButton>

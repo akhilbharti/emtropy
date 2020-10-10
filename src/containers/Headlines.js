@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch,useSelector } from 'react-redux';
 import { animateScroll as scroll } from "react-scroll";
-
+import {loadState} from '../utils/helper'
 import Header from '../components/Header';
 
 import styled from 'styled-components';
@@ -21,7 +21,8 @@ function Headlines(props){
   const { selected } = useSelector((state) => state.general);
   const  {loading,articles} = useSelector((state) => state.news);
   const {match} = props
-
+const locastorageValue = loadState()
+  console.log('%c⧭', 'color: #e50000', locastorageValue);
   // Send url to setSelected Action Creator, it will check if is valid
   useEffect(() => {
     dispatch(setSelectedMenu(match.params.name));
@@ -35,6 +36,7 @@ function Headlines(props){
     scroll.scrollToTop({
       smooth: true,
     });
+
     dispatch(getNewsHeadlines(match.params.name));
     return () => dispatch(clearNews());
   }, [match.params.name, match, dispatch]);
