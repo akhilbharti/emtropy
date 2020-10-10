@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch,useSelector } from 'react-redux';
-import queryString from 'query-string';
 import Header from '../components/Header';
 import NotFound from '../components/NotFound';
 import styled from 'styled-components';

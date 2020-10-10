@@ -102,25 +102,8 @@ export const getNewsHeadlines = (name) => async (dispatch, getState) => {
 };
 
 
-// Set the current selected menu (discover or genre), if is valid
-export const setSelectedArticles = (name) => (dispatch, getState) => {
-  const { articles } = getState().news;
-  if (!name) {
-    dispatch({ type: TYPES.REMOVE_SELECTED_ARTICLE });
-  } else if (articles.find((article) => article.source?.name === name)) {
-    dispatch({
-      type: TYPES.SELECTED_ARTICLE,
-      payload: name,
-      articles: articles,
-    });
-  } else {
-    history.push(process.env.PUBLIC_URL + "/404");
-  }
-};
 
 export const hideSelectedNews=(news)=>(dispatch,getState)=>{
-  const { articles } = getState().news;
-
 dispatch({
   type: TYPES.HIDE_SELECTED_NEWS,
   payload: news,
@@ -128,6 +111,12 @@ dispatch({
 
 }
 
+export const setLikeNews=(news)=>(dispatch)=>{
+  dispatch({
+    type:TYPES.SET_LIKE_SELECTED,
+    payload:news
+  })
+}
 
 // Get movies search
 export const getNewsSearch = (query) => async (dispatch,getState) => {

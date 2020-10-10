@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import NothingSvg from '../svg/nothing.svg';
 import PublishDate from './PublishDate';
 import Loading from './Loading';
 // import Rating from "../components/Rating";
 import Button from "../components/Button";
-import { hideSelectedNews } from '../store/actions';
+import { hideSelectedNews,setLikeNews } from '../store/actions';
 
 
 const NewsWrapper = styled.a`
@@ -155,10 +155,11 @@ const Tooltip = styled.span`
 `;
 
 // Function to render list of Newss
-function NewsItem({ article}){
+function NewsItem({article}){
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 const dispatch = useDispatch()
+const likes = useSelector(state => state.news?.likes)
   useEffect(() => {
     return () => setLoaded(false);
   }, []);
@@ -199,14 +200,29 @@ const dispatch = useDispatch()
           </PublishedDateWrapper>
           {/* card actions */}
           <PublishedDateWrapper>
-            <Button title="Like" solid icon="thumbs-up" left />
+            <Button
+              title={likes[article.publishedAt] ? "Liked" : "Like"}
+              solid
+              icon={
+                likes[article.publishedAt] ? ["fas", "heart"] : ["far", "heart"]
+               
+              }
+              left
+               colr={likes[article.publishedAt]?"red":null}
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(setLikeNews(article.publishedAt));
+              }}
+            />
             <Button
               title="hide"
               solid
               icon="eye-slash"
               left
-              onClick={(e) => {e.preventDefault()
-                dispatch(hideSelectedNews(article.publishedAt))}}
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(hideSelectedNews(article.publishedAt));
+              }}
             />
           </PublishedDateWrapper>
         </DetailsWrapper>

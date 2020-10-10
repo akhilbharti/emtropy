@@ -25,7 +25,7 @@ import {
   faHome,
   faCalendar,
   faPoll,
-  faHeart,
+  faHeart as fasFaHeart,
   faDotCircle,
   faStar as fasFaStar,
   faSearch,
@@ -37,7 +37,7 @@ import {
   faEyeSlash,
   faThumbsUp
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as farFaStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as farFaStar, faHeart as farFaHeart } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   fab,
@@ -46,7 +46,7 @@ library.add(
   faHome,
   faCalendar,
   faPoll,
-  faHeart,
+  fasFaHeart,
   faDotCircle,
   fasFaStar,
   farFaStar,
@@ -57,7 +57,8 @@ library.add(
   faPlay,
   faTrash,
   faEyeSlash,
-  faThumbsUp
+  faThumbsUp,
+  farFaHeart
 
 );
 

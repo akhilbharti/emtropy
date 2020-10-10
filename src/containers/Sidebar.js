@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import StickyBox from 'react-sticky-box';
-import ShortBy from "../components/ShortBy";
 
 import Logo from '../components/Logo';
 import GithubLogo from "../svg/github-logo.svg";
