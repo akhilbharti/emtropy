@@ -143,7 +143,7 @@ const App = () => {
           <ContentWrapper>
             <Switch>
               <Route
-                path={process.env.PUBLIC_URL + "/top-headlines/breaking-news"}
+                path={process.env.PUBLIC_URL + "/"}
                 exact
                 render={() => (
                   <Redirect
