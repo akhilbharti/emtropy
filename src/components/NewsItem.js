@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
 import {useDispatch,useSelector} from 'react-redux'
+import Img from "react-cool-img";
 import NothingSvg from '../svg/nothing.svg';
 import PublishDate from './PublishDate';
 import Loading from './Loading';
@@ -48,13 +49,12 @@ const NewsWrapper = styled.a`
   }
 `;
 
-const NewsImg = styled.img`
+const NewsImg = styled(Img)`
   width: 100%;
   height: 35rem;
   display:block;
-  object-fit: ${(props) => (props.error ? "contain" : "cover")};
+  object-fit: "cover";
   border-radius: 0.8rem;
-  padding: ${(props) => (props.error ? "2rem" : "")};
   box-shadow: 0rem 2rem 5rem var(--shadow-color);
   transition: all 100ms cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -68,17 +68,6 @@ const NewsImg = styled.img`
   }
 `;
 
-const ImgLoading = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  min-height: 300px;
-  border-radius: 0.8rem;
-  box-shadow: 0rem 2rem 5rem var(--shadow-color);
-  transition: all 100ms cubic-bezier(0.645, 0.045, 0.355, 1);
-`;
 
 const Title = styled.h2`
   text-align: center;
@@ -156,35 +145,20 @@ const Tooltip = styled.span`
 
 // Function to render list of Newss
 function NewsItem({article}){
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
 const dispatch = useDispatch()
 const likes = useSelector(state => state.news?.likes)
-  useEffect(() => {
-    return () => setLoaded(false);
-  }, []);
 
   return (
     <LazyLoad height={200} offset={200}>
       <NewsWrapper href={article.url} target="_blank" rel="noopener noreferrer">
-        {!loaded ? (
-          <ImgLoading>
-            <Loading />
-          </ImgLoading>
-        ) : null}
+       
         <NewsImg
-          error={error ? 1 : 0}
-          onLoad={() => setLoaded(true)}
-          style={!loaded ? { display: "none" } : {}}
+        placeholder={ <Loading/>}
+          error={NothingSvg}
           src={article.image}
+          alt={article.title}
           // If no image, error will occurr, we set error to true
           // And only change the src to the nothing svg if it isn't already, to avoid infinite callback
-          onError={(e) => {
-            setError(true);
-            if (e.target.src !== `${NothingSvg}`) {
-              e.target.src = `${NothingSvg}`;
-            }
-          }}
         />
         <DetailsWrapper>
           <Title>{article.title}</Title>
@@ -205,10 +179,9 @@ const likes = useSelector(state => state.news?.likes)
               solid
               icon={
                 likes[article.publishedAt] ? ["fas", "heart"] : ["far", "heart"]
-               
               }
               left
-               colr={likes[article.publishedAt]?"red":null}
+              colr={likes[article.publishedAt] ? "red" : null}
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(setLikeNews(article.publishedAt));
