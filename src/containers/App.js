@@ -147,7 +147,7 @@ const App = () => {
                 exact
                 render={() => (
                   <Redirect
-                    exact
+                    
                     from={process.env.PUBLIC_URL + "/"}
                     to={process.env.PUBLIC_URL + "/top-headlines/breaking-news"}
                   />
