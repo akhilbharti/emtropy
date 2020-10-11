@@ -49,6 +49,7 @@ const SortBy = ({ options,action }) => {
       options={options}
       defaultValue={options[0]}
       isSearchable={false}
+      aria-label="searchlabel"
     />
   );
 };

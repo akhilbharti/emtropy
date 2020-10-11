@@ -135,11 +135,13 @@ const SearchBar = (props) => {
       <Button type="submit" state={state}>
         <FontAwesomeIcon icon={"search"} size="1x" />
       </Button>
+      <label for="search"></label>
       <Input
         onChange={(e) => setInput(e.target.value)}
         ref={inputFocus}
         value={input}
         state={state}
+        id="search"
         placeholder="Search for a News..."
       />
     </Form>
