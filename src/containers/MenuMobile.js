@@ -148,7 +148,7 @@ const SearhBarWrapper = styled.div`
   display: flex;
 `;
 function MenuMobile(){
-    const { staticTopic, topics, selected, countries } = useSelector(
+    const { staticTopic, topics, selected, countries, lang } = useSelector(
       (state) => state.general
     );
   const [isOpened, setisOpened] = useState(false);
@@ -166,11 +166,13 @@ function MenuMobile(){
           <Bar />
         </Hamburguer>
         <SearhBarWrapper>
-        <SearchBar mobile={true} />
-        <ShortBy options={countries} placeholder="Country" action="country" />
+          <ShortBy options={countries} placeholder="Country" action="country" />
+          <ShortBy options={lang} placeholder="Language" action="language" />
         </SearhBarWrapper>
       </WrapperStickyBox>
       <Menu isOpen={isOpened} onStateChange={isMenuOpen} styles={styles}>
+        <SearchBar mobile={true} />
+
         <Heading>Top-headlines</Heading>
         {renderStatic(staticTopic, selected, setisOpened)}
         <Heading>Topic</Heading>
