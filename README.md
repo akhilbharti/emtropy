@@ -13,14 +13,15 @@ Problem statement:
 Create a news articles listing website using React.js*
 
 **Demo**
-[demo](emtropy-gnews.netlify.app)
+
+[demo](https://emtropy-gnews.netlify.app)
 
 
 Built with:
 
 - [React](https://reactjs.org/)
 - [React-Router-Dom](https://www.npmjs.com/package/react-router-dom)
-- [Styled-COmponents](https://styled-components.com/)
+- [Styled-Components](https://styled-components.com/)
 - [react-cool-img](https://www.npmjs.com/package/react-cool-img)
 - [React-Redux](https://redux.js.org/)
 
