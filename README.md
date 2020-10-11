@@ -31,7 +31,7 @@ Hosted on:
 
 > Desktop Version
 
-![Desktopdemo](https://github.com/akhilbharti/spacex-assignment/blob/master/1.png)
+![Desktopdemo](https://github.com/akhilbharti/emtropy/blob/master/desktop.png)
 
 > Mobile Version
 
