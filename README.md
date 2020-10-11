@@ -44,7 +44,7 @@ Hosted on:
 
 > LightHouse Score(Desktop)
 
- ![DesktopLightHouse](https://github.com/akhilbharti/spacex-assignment/blob/master/3.png)
+ ![DesktopLightHouse](https://github.com/akhilbharti/emtropy/blob/master/lighthouse.png)
 
 ### Features of application
 
