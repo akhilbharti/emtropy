@@ -35,7 +35,11 @@ Hosted on:
 
 > Mobile Version
 
- ![Mobiledemo](https://github.com/akhilbharti/spacex-assignment/blob/master/2.png)
+ ![Mobiledemo](https://github.com/akhilbharti/emtropy/blob/master/phone.png)
+
+ > Tablet Version
+
+ ![Mobiledemo](https://github.com/akhilbharti/emtropy/blob/master/tab.png)
 
 > LightHouse Score(Desktop)
 
