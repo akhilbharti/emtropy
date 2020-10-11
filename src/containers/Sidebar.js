@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Clock from "react-clock";
+import React from "react";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,6 @@ import StickyBox from 'react-sticky-box';
 import Logo from '../components/Logo';
 import GithubLogo from "../svg/github-logo.svg";
 import MenuItem from '../components/MenuItem';
-import "react-clock/dist/Clock.css";
 
 const Wrapper = styled.div`
   display: flex;
@@ -79,24 +77,11 @@ const Svg = styled.img`
   height: 3rem;
 `;
 
-
-const ClockWrapper = styled.div`
-  margin-left: 25px;
-`;
-
 function Sidebar(){
   const { staticTopic, topics, selected } = useSelector(
     (state) => state.general
   );
-  const [value, setValue] = useState(new Date());
 
-  useEffect(() => {
-    const interval = setInterval(() => setValue(new Date()), 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   return (
     <StickyBox>
@@ -110,9 +95,7 @@ function Sidebar(){
           <Svg src={GithubLogo} alt="github repo" />
           <span style={{ marginLeft: "5px" }}>Akhil Bharti</span>
         </StyledCoffe>
-        <ClockWrapper>
-          <Clock value={value} />
-        </ClockWrapper>
+        
       </Wrapper>
     </StickyBox>
   );
