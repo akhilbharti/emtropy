@@ -39,6 +39,7 @@ const LinkWrap = styled(Link)`
 const StyledCoffe = styled.a`
   display: flex !important;
   outline: none;
+  cursor:pointer;
   justify-content: center !important;
   align-items: center !important;
   padding: 0.5rem 2rem;
@@ -91,11 +92,14 @@ function Sidebar(){
         {renderStatic(staticTopic, selected)}
         <Heading>Topic</Heading>
         {renderTopics(topics, selected)}
-        <StyledCoffe>
+        <StyledCoffe
+          href="https://github.com/akhilbharti/emtropy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Svg src={GithubLogo} alt="github repo" />
           <span style={{ marginLeft: "5px" }}>Akhil Bharti</span>
         </StyledCoffe>
-        
       </Wrapper>
     </StickyBox>
   );
