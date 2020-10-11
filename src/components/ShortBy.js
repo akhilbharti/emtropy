@@ -55,4 +55,4 @@ const SortBy = ({ options,action }) => {
 };
 
 
-export default SortBy;
+export default React.memo(SortBy);

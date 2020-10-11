@@ -81,4 +81,4 @@ const Button = ({ title, solid, icon, left, onClick,colr }) => {
   );
 };
 
-export default Button;
+export default React.memo(Button);

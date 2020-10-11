@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux'
 import NewsItem from "./NewsItem";
-// import Pagination from './Pagination';
 import NotFound from "./NotFound";
 
 
@@ -43,9 +42,8 @@ function NewsList({ articles}){
             )
         )}
       </NewsWrapper>
-      {/* <Pagination articles={articles} /> */}
     </>
   );
 };
 
-export default NewsList;
+export default (NewsList);

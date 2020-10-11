@@ -69,4 +69,4 @@ const MenuItem = ({ title, selected, mobile }) => {
   );
 };
 
-export default MenuItem;
+export default React.memo(MenuItem);

@@ -204,4 +204,4 @@ const likes = useSelector(state => state.news?.likes)
   );
 };
 
-export default NewsItem;
+export default (NewsItem);

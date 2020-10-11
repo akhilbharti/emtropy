@@ -26,4 +26,4 @@ function PublishDate({ number }){
   );
 };
 
-export default PublishDate;
+export default React.memo(PublishDate);

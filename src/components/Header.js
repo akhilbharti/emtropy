@@ -42,4 +42,4 @@ const Header = ({ title, subtitle, size }) => (
   </HeaderWrapper>
 );
 
-export default Header;
+export default (Header);

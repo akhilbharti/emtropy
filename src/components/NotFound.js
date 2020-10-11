@@ -66,4 +66,4 @@ const NotFound = ({ title, subtitle, languagemissing }) => {
   );
 };
 
-export default NotFound;
+export default React.memo(NotFound);

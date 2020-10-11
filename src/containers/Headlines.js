@@ -1,34 +1,34 @@
-import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { useDispatch,useSelector } from 'react-redux';
+import React, { useEffect, lazy, Suspense } from "react";
+import { Helmet } from "react-helmet";
+import { useDispatch, useSelector } from "react-redux";
 import { animateScroll as scroll } from "react-scroll";
-import {loadState} from '../utils/helper'
-import Header from '../components/Header';
-
-import styled from 'styled-components';
-
+import { loadState } from "../utils/helper";
+import Header from "../components/Header";
+import styled from "styled-components";
+import Loader from "../components/Loader"
 import { setSelectedMenu, getNewsHeadlines, clearNews } from "../store/actions";
-import NewsList from '../components/NewsList';
-import Loader from '../components/Loader';
+
+const NewsList = lazy(() => import("../components/NewsList"));
+
 
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
 `;
-function Headlines(props){
+function Headlines(props) {
   const dispatch = useDispatch();
   const { selected } = useSelector((state) => state.general);
-  const  {loading,articles} = useSelector((state) => state.news);
-  const {match} = props
-const locastorageValue = loadState()
-  console.log('%c⧭', 'color: #e50000', locastorageValue);
+  const { loading, articles } = useSelector((state) => state.news);
+  const { match } = props;
+  const locastorageValue = loadState();
+  console.log("%c⧭", "color: #e50000", locastorageValue);
   // Send url to setSelected Action Creator, it will check if is valid
   useEffect(() => {
     dispatch(setSelectedMenu(match.params.name));
     // Clean up to remove selected menu from state
     return () => dispatch(setSelectedMenu());
-  }, [match.params.name,dispatch]);
+  }, [match.params.name, dispatch]);
 
   // Call useEffect to fetch topic headlines, pass in the url query
 
@@ -51,12 +51,14 @@ const locastorageValue = loadState()
     <Wrapper>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{`${selected} Top-Headlines`}</title>
+        <title>{`Top-Headlines`}</title>
       </Helmet>
       <Header title={selected} subtitle="Top-Headlines" />
-      <NewsList articles={articles}/>
+      <Suspense fallback={<div>Loading...</div>}>
+        <NewsList articles={articles} />
+      </Suspense>
     </Wrapper>
   );
 }
 
-export default Headlines
+export default Headlines;
