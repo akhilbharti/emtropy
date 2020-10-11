@@ -1,68 +1,88 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dee90550-b62d-4911-a451-0316afbd1e67/deploy-status)](https://app.netlify.com/sites/emtropy-gnews/deploys)
 
-## Available Scripts
+# :newspaper: :computer: G News Web Application
 
-In the project directory, you can run:
+## Description
 
-### `yarn start`
+This application displays data about SpaceX rocket launches.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Using the Gnews API: <https://gnews.io/>.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Emtropy React JS Coding Assignment
+Problem statement:
+Create a news articles listing website using React.js*
 
-### `yarn test`
+**Demo**
+[demo](emtropy-gnews.netlify.app)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+Built with:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React](https://reactjs.org/)
+- [React-Router-Dom](https://www.npmjs.com/package/react-router-dom)
+- [Styled-COmponents](https://styled-components.com/)
+- [react-cool-img](https://www.npmjs.com/package/react-cool-img)
+- [React-Redux](https://redux.js.org/)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Hosted on:
+- [Netlify](https://www.netlify.com/)
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> Desktop Version
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Desktopdemo](https://github.com/akhilbharti/spacex-assignment/blob/master/1.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> Mobile Version
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ ![Mobiledemo](https://github.com/akhilbharti/spacex-assignment/blob/master/2.png)
 
-## Learn More
+> LightHouse Score(Desktop)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ ![DesktopLightHouse](https://github.com/akhilbharti/spacex-assignment/blob/master/3.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Features of application
 
-### Code Splitting
+* Application Fetches News Headlines details when app is initialized based on the selected Category
+* Styled-Components library are used to create the components-level styles.
+* Responsive UI for all kind of device
+* A searchBar is created to get the search result of news headlines
+* Hide functionality to remove the news card from the user's view
+* Like functionality to like any news article
+* ALL MODIFIED DATA like hide and likes – should be persisted and should not reset on browser refresh
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+### Development Approach
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* Used Functional Components with Hooks
+* Redux is used to maintain single source of truth and persistence of likes and hide articles is made in the store itself.
+* Sending API calls ony when topic changes
+* Used React lazy and Suspense for code spliting on component level with dynamic imports
 
-### Making a Progressive Web App
+### Performance optimization
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+* lazy loading of Images implemented for each news article
+* Memoiztion of Components added, 
+* Avoided unncessary API call by saving news for the same topic in localstorage.
+* Virtualization of articles card added to avoid creation of unnecessary dom-nodes in dom-node-tree.
 
-### Advanced Configuration
+## Getting Started
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+1. Clone the Repo
 
-### Deployment
+   ```bash
+   git clone https://github.com/akhilbharti/emtropy.git 
+     ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+2. Install dependencies
 
-### `yarn build` fails to minify
+   ```bash
+   yarn
+   ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+3. Fire up the server and watch files
+
+   ```bash
+   yarn start
+   ```
+
