@@ -14,7 +14,7 @@ Create a news articles listing website using React.js*
 
 **Demo**
 
-[demo](emtropy-gnews.netlify.app)
+[demo](https://emtropy-gnews.netlify.app)
 
 
 Built with:
