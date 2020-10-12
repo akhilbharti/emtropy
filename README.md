@@ -4,7 +4,7 @@
 
 ## Description
 
-This application displays data about SpaceX rocket launches.
+This application displays data about news headlines.
 
 Using the Gnews API: <https://gnews.io/>.
 
